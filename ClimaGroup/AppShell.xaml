@@ -11,5 +11,12 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:WeatherView}"
         Route="WeatherView" />
+    <Tab Title="Notes" Icon="note.png">
+        <ShellContent ContentTemplate="{DataTemplate local:NotesPage}" />
+    </Tab>
+
+    <Tab Title="Recordatorios" Icon="reminder.png">
+        <ShellContent ContentTemplate="{DataTemplate local:RecordatoriosPage}" />
+    </Tab>
 
 </Shell>

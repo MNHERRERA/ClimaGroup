@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ClimaGroup.ViewModels"
+             x:Class="ClimaGroup.Views.RecordatoriosPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:RecordatoriosViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Label Text="Nuevo Recordatorio" FontSize="20" FontAttributes="Bold" />
+
+            <Entry Placeholder="Texto" Text="{Binding Texto}" />
+            <TimePicker Time="{Binding FechaHora}" />
+
+            <Button Text="Agregar" Command="{Binding AgregarCommand}" />
+
+            <Label Text="Lista de Recordatorios" FontSize="20" Margin="0,20,0,0" />
+
+            <CollectionView ItemsSource="{Binding ListaRecordatorios}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Texto}" FontAttributes="Bold" />
+                                <Label Text="{Binding FechaHora}" />
+                                <Button Text="Eliminar"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:RecordatoriosViewModel}}, Path=EliminarCommand}"
+                                        CommandParameter="{Binding .}"
+                                        TextColor="Red" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

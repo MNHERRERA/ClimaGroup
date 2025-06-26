@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ClimaGroup.ViewModels"
+             x:Class="ClimaGroup.Views.NotesPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:NotesViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+
+            <Label Text="Crear Nota" FontSize="20" FontAttributes="Bold" />
+
+            <Entry Placeholder="Título" Text="{Binding Titulo}" />
+            <Editor Placeholder="Contenido" HeightRequest="100" Text="{Binding Contenido}" />
+
+            <Button Text="Agregar Nota" Command="{Binding AgregarNotaCommand}" />
+
+            <Label Text="Notas guardadas" FontSize="20" FontAttributes="Bold" Margin="0,20,0,0"/>
+
+            <CollectionView ItemsSource="{Binding Notes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5" BorderColor="Gray" CornerRadius="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Titulo}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Contenido}" />
+                                <Label Text="{Binding FechaCreacion, StringFormat='Creado: {0:dd/MM/yyyy HH:mm}'}" FontSize="12" TextColor="Gray"/>
+                                <Button Text="Eliminar" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:NotesViewModel}}, Path=EliminarNotaCommand}" 
+                                        CommandParameter="{Binding .}" 
+                                        TextColor="Red"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
