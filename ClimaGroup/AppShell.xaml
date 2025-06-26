@@ -18,5 +18,12 @@
     <Tab Title="Recordatorios" Icon="reminder.png">
         <ShellContent ContentTemplate="{DataTemplate local:RecordatoriosPage}" />
     </Tab>
+    <Tab Title="Clima" Icon="clima.png">
+        <ShellContent ContentTemplate="{DataTemplate local:ClimaPage}" />
+    </Tab>
+    <Tab Title="About" Icon="about.png">
+        <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+    </Tab>
+
 
 </Shell>

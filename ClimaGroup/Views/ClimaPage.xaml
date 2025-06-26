@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ClimaGroup.ViewModels"
+             x:Class="ClimaGroup.Views.ClimaPage"
+             BackgroundColor="#e0f7fa">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ClimaViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Clima Actual" FontSize="28" HorizontalOptions="Center" FontAttributes="Bold" />
+
+        <Frame BackgroundColor="#ffffff" CornerRadius="15" Padding="20" HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="{Binding Clima.Hora, StringFormat='Hora: {0:HH:mm}'}" FontSize="18" />
+                <Label Text="{Binding Clima.Temperatura, StringFormat='Temperatura: {0} °C'}" FontSize="18" />
+                <Label Text="{Binding Clima.Humedad, StringFormat='Humedad: {0} %'}" FontSize="18" />
+                <Label Text="{Binding Clima.Lluvia, StringFormat='Lluvia: {0} mm'}" FontSize="18" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Text="Actualizar Clima" Command="{Binding CargarClimaCommand}" />
+    </VerticalStackLayout>
+</ContentPage>
