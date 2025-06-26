@@ -2,27 +2,37 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:localnamespace="clr-namespace:ActividadClaseMAUI.ViewModels"
-             x:Class="ActividadClaseMAUI.Views.WeatherView"
-             Title="WeatherView">
+             xmlns:localnamespace="clr-namespace:ClimaGroup.ViewModels"
+             x:Class="ClimaGroup.Views.WeatherView"
+             Title="Clima Actual">
 
     <ContentPage.BindingContext>
         <localnamespace:WeatherViewModel />
     </ContentPage.BindingContext>
-        <local:WeatherViewModel />
-        <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+    <VerticalStackLayout Padding="30" Spacing="15">
+        <Label Text="Temperatura actual (°C)"
+               FontSize="20"
+               TextColor="Red"
+               HorizontalOptions="Center" />
+        <Label Text="{Binding WeatherData.current.temperature_2m}"
+               FontSize="32"
+               HorizontalOptions="Center" />
+
+        <Label Text="Humedad relativa (%)"
+               FontSize="20"
+               TextColor="Blue"
+               HorizontalOptions="Center" />
+        <Label Text="{Binding WeatherData.current.relative_humidity_2m}"
+               FontSize="32"
+               HorizontalOptions="Center" />
+
+        <Label Text="Precipitación (mm)"
+               FontSize="20"
+               TextColor="Green"
+               HorizontalOptions="Center" />
+        <Label Text="{Binding WeatherData.current.rain}"
+               FontSize="32"
+               HorizontalOptions="Center" />
     </VerticalStackLayout>
-    <Label 
-    x:Name="LabelTemperatura"
-    Text="{Binding WeatherDataInfo.Current.Temperature_2m}"
-    />
-    <Label 
-    x:Name="LaberRain"
-    Text="{Binding WeatherDataInfo.Current.Temperature_2m}"
-    />
- 
 </ContentPage>

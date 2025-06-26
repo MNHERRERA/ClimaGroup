@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClimaGroup.Models
 {
-    class Recordatorio
+    public class Recordatorio
     {
         public string Texto { get; set; }
         public TimeSpan FechaHora { get; set; }

@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using static Microsoft.Maui.ApplicationModel.Permissions;
+using ClimaGroup.Models;
+using ClimaGroup.Services;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Devices.Sensors;
 
 namespace ClimaGroup.ViewModels
 {
     public class ClimaViewModel : INotifyPropertyChanged
     {
-        await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-
         private readonly ClimaService _climaService = new();
 
         private ClimaData _clima;
         public ClimaData Clima
         {
             get => _clima;
-            set { _clima = value; OnPropertyChanged(nameof(Clima)); }
+            set
+            {
+                _clima = value;
+                OnPropertyChanged(nameof(Clima));
+            }
         }
 
         public ICommand CargarClimaCommand { get; }
@@ -34,8 +36,20 @@ namespace ClimaGroup.ViewModels
         {
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync()
-                               ?? await Geolocation.GetLocationAsync();
+                // Pedir permiso de geolocalización
+                var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                if (status != PermissionStatus.Granted)
+                {
+                    Console.WriteLine("Permiso de ubicación no concedido");
+                    return;
+                }
+
+                Location location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location == null)
+                {
+                    location = await Geolocation.GetLocationAsync();
+                }
 
                 if (location != null)
                 {
@@ -50,7 +64,7 @@ namespace ClimaGroup.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged(string name) =>
+        private void OnPropertyChanged(string name) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

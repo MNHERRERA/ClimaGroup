@@ -2,8 +2,10 @@ namespace ClimaGroup.Views;
 
 public partial class NotesPage : ContentPage
 {
-	public NotesPage()
-	{
-		InitializeComponent();
-	}
+    public NotesPage()
+    {
+        InitializeComponent();
+        BindingContext = new NotesViewModel();
+
+    }
 }

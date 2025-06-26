@@ -42,7 +42,7 @@ namespace ClimaGroup.ViewModels
 
         private async Task CargarRecordatoriosAsync()
         {
-            var datos = await RecordatorioStorageService.CargarAsync();
+            var datos = await RecordatoriosStorageService.CargarAsync();
             foreach (var r in datos)
                 ListaRecordatorios.Add(r);
         }
@@ -63,7 +63,7 @@ namespace ClimaGroup.ViewModels
         }
 
         private async Task Guardar() =>
-            await RecordatorioStorageService.GuardarAsync(ListaRecordatorios.ToList());
+            await RecordatoriosStorageService.GuardarAsync(ListaRecordatorios.ToList());
 
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string name) =>

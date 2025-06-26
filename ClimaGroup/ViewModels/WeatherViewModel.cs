@@ -34,7 +34,7 @@ namespace ClimaGroup.ViewModels
         public async Task GetCurrentWeatherAsync()
         {
             WeatherRepository weatherRepository = new WeatherRepository();
-            WeatherData = await weatherRepository.GetWeatherCurrentLocationAsync();
+            WeatherData = await weatherRepository.GetWeatherCurrentLocation();
         }
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string name = "") => 

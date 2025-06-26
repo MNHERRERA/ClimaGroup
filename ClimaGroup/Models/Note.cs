@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClimaGroup.Models
 {
-    class Note
+    public class Note
     {
         public string Titulo { get; set; }
         public string Contenido { get; set; }
